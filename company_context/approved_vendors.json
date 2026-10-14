@@ -1,0 +1,25 @@
+{
+  "vendors": [
+    {
+      "id": "VEND-001",
+      "name": "Amazon Web Services",
+      "tax_id": "US-91-1234567",
+      "category": "Cloud Infrastructure",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "VEND-002",
+      "name": "Datadog",
+      "tax_id": "US-13-9876543",
+      "category": "Monitoring & Observability",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "VEND-003",
+      "name": "GitHub Inc",
+      "tax_id": "US-94-3321456",
+      "category": "Developer Tools",
+      "status": "ACTIVE"
+    }
+  ]
+}

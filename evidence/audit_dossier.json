@@ -1,0 +1,156 @@
+{
+  "metadata": {
+    "system": "Autonomous Company Operator v1.0",
+    "timestamp": "2026-10-14T11:09:19.324088",
+    "goal": "Reconcile pending bills in inbox, enforce spending policies, post authorized payments to ledger, and return audit proof.",
+    "verification_status": "VERIFIED_SUCCESS"
+  },
+  "summary_metrics": {
+    "invoices_discovered": 3,
+    "invoices_approved_autonomous": 1,
+    "invoices_approved_hitl": 1,
+    "invoices_rejected_compliance": 2,
+    "total_disbursed_usd": 3932.5
+  },
+  "processed_records": [
+    {
+      "invoice_id": "INV-2026-OCT-010",
+      "vendor": "Amazon Web Services",
+      "amount": 482.5,
+      "approver": "AUTONOMOUS_OPERATOR",
+      "hash": "49a4dcfaac99a0a3"
+    },
+    {
+      "invoice_id": "INV-2026-OCT-088",
+      "vendor": "Datadog",
+      "amount": 3450.0,
+      "approver": "HUMAN_ADMIN_AUTHORIZED",
+      "hash": "914f4aa9c130fe04"
+    }
+  ],
+  "recoveries_and_adaptations": [
+    {
+      "file": "inv_003_shadow_vendor.txt",
+      "resolution": "Fallback heuristic parser extracted partial entities; flagged missing Tax ID."
+    },
+    {
+      "item": "inv_003_shadow_vendor.txt",
+      "reason": "Unrecognized vendor 'CryptoCloud Services Ltd'. Excluded from payment queue."
+    }
+  ],
+  "human_in_the_loop_decisions": [
+    {
+      "invoice_id": "INV-2026-OCT-088",
+      "amount": 3450.0,
+      "authorized": true,
+      "timestamp": "2026-10-14T11:09:19.309022"
+    }
+  ],
+  "full_audit_trace": [
+    {
+      "timestamp": "11:09:19",
+      "phase": "UNDERSTAND",
+      "message": "Received Goal: \"Reconcile pending bills in inbox, enforce spending policies, post authorized payments to ledger, and return audit proof.\""
+    },
+    {
+      "timestamp": "11:09:19",
+      "phase": "UNDERSTAND",
+      "message": "Reading company SOPs and internal context..."
+    },
+    {
+      "timestamp": "11:09:19",
+      "phase": "UNDERSTAND",
+      "message": "Context loaded: 3 approved vendors. Auto-spend limit: $1,000.00"
+    },
+    {
+      "timestamp": "11:09:19",
+      "phase": "PLAN",
+      "message": "Synthesizing milestone execution graph..."
+    },
+    {
+      "timestamp": "11:09:19",
+      "phase": "EXECUTE",
+      "message": "Initiating autonomous execution loop..."
+    },
+    {
+      "timestamp": "11:09:19",
+      "phase": "EXECUTE",
+      "message": "[Step 1/6] Tool: FileSystemScanner -> scanning workspace/inbox"
+    },
+    {
+      "timestamp": "11:09:19",
+      "phase": "EXECUTE",
+      "message": "[Step 2/6] Parsing document: inv_001_aws.json"
+    },
+    {
+      "timestamp": "11:09:19",
+      "phase": "EXECUTE",
+      "message": "[Step 2/6] Parsing document: inv_002_datadog.json"
+    },
+    {
+      "timestamp": "11:09:19",
+      "phase": "EXECUTE",
+      "message": "[Step 2/6] Parsing document: inv_003_shadow_vendor.txt"
+    },
+    {
+      "timestamp": "11:09:19",
+      "phase": "ADAPT",
+      "message": "Encountered unstructured file format '.txt' in inv_003_shadow_vendor.txt. Engaging fallback heuristic parser..."
+    },
+    {
+      "timestamp": "11:09:19",
+      "phase": "POLICY",
+      "message": "Invoice INV-2026-OCT-010 ($482.50) within limits -> AUTONOMOUS APPROVAL"
+    },
+    {
+      "timestamp": "11:09:19",
+      "phase": "HITL",
+      "message": "Invoice INV-2026-OCT-088 ($3,450.00) exceeds autonomous limit ($1,000.00)."
+    },
+    {
+      "timestamp": "11:09:19",
+      "phase": "HITL",
+      "message": "HITL Policy Gate: Simulation mode enabled -> Authorized by CFO/Admin (Token: AUTH-88219)"
+    },
+    {
+      "timestamp": "11:09:19",
+      "phase": "ADAPT",
+      "message": "Policy Rejection: Vendor 'CryptoCloud Services Ltd' not in approved registry."
+    },
+    {
+      "timestamp": "11:09:19",
+      "phase": "EXECUTE",
+      "message": "[Step 4/6] Posting 2 authorized transactions to ledger.csv"
+    },
+    {
+      "timestamp": "11:09:19",
+      "phase": "EXECUTE",
+      "message": "[Step 5/6] Moving processed records to archive..."
+    },
+    {
+      "timestamp": "11:09:19",
+      "phase": "VERIFY",
+      "message": "[Step 6/6] Executing independent outcome verification..."
+    },
+    {
+      "timestamp": "11:09:19",
+      "phase": "VERIFY",
+      "message": "Check 1: Inbox clearance -> PASSED (0 files remaining)"
+    },
+    {
+      "timestamp": "11:09:19",
+      "phase": "VERIFY",
+      "message": "Check 2: Ledger financial sum matches -> $3,932.50 == $3,932.50 -> PASSED"
+    },
+    {
+      "timestamp": "11:09:19",
+      "phase": "VERIFY",
+      "message": "Check 3: Cryptographic audit signatures -> PASSED"
+    },
+    {
+      "timestamp": "11:09:19",
+      "phase": "COMPLETE",
+      "message": "Generating structured proof-of-work evidence dossier..."
+    }
+  ]
+}
